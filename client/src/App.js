@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useState ,useEffect} from 'react';
 import { useDispatch } from 'react-redux';
 import {Container, Grow, Grid} from '@mui/material'
 
@@ -11,7 +11,7 @@ import memories from './images/flashcard.png'
 import {Header, Heading,Image} from './styles'
 
 const App = () => {
-    // const classes = useStyles()
+    const [currentId, setCurrentId] = useState(null)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -20,23 +20,20 @@ const App = () => {
     return(
         <Container>
             <Header 
-            // className={classes.appBar} 
             position='static' color='inherit'>
                 <Heading 
-                // className={classes.heading}
                  variant='h2' align='center'>Memórias</Heading>
                 <Image src={memories} 
-                // className={classes.image}
                  alt='Memórias' height="60" />
             </Header>
             <Grow in >
                 <Container>
-                    <Grid container justify="space-between" alignItems="stretch" spacing={4}>
-                        <Grid item xs={12} sm={7} md={6}>
-                            <Posts/>
+                    <Grid container justify="space-between" alignItems="stretch"  spacing={6}>
+                        <Grid item xs={12} sm={7} md={6} width="70%">
+                            <Posts setCurrentId={currentId}/>
                         </Grid>
-                        <Grid item xs={12} sm={7} md={6}>
-                            <Form/>
+                        <Grid item xs={12} sm={7} md={5}>
+                            <Form currentId={currentId} setCurrentId = {setCurrentId}/>
                         </Grid>
                     </Grid>
                 </Container>

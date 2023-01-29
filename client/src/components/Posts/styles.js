@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import {Grid} from '@mui/material'
 
-export const Container = styled.div`
+export const Container = styled(Grid)`
     display: flex;
     align-items: center;
   .smMargin {

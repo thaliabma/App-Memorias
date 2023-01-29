@@ -4,15 +4,21 @@ import FileBase from 'react-file-base64'
 import { TextField, Button, Typography, Paper } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import {createPost} from '../../actions/posts'
-const Form = () => {
+import {updatePost} from '../../actions/posts'
+const Form = ({currentId,setCurrentId}) => {
     const [postData, setPostData] = useState({creator: '', title:'', message:'', tags:'', selectedFile: ''})
     
     const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // console.log(postData)
-        dispatch(createPost(postData))
+
+        if(currentId){
+            dispatch(updatePost(currentId,postData))
+        }else{
+            dispatch(createPost(postData))
+        }
+
     }
     const clear = () => {
 
